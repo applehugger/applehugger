@@ -86,7 +86,17 @@
   window.addEventListener('resize', reset);
 
   // ---------- Drums / Cars ----------
-  const data = (window.COLLECTIONS || {});
+  // Data lives in data/drums.json and data/cars.json: { specFields: [...], items: [...] }.
+  // 'no-cache' makes the browser check for edits from the /admin editor on every visit.
+  const loadCollection = async (kind) => {
+    try {
+      const res = await fetch(`data/${kind}.json`, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(res.status);
+      return await res.json();
+    } catch (e) {
+      return { specFields: [], items: [] };
+    }
+  };
   const LABELS = {
     drums: { title: 'Drums', item: 'drum', empty: 'Drums are on the way' },
     cars: { title: 'Cars', item: 'car', empty: 'Cars are on the way' },
@@ -99,9 +109,11 @@
 
   // List page
   const list = document.querySelector('[data-collection-list]');
-  if (list) {
+  if (list) renderList(list);
+
+  async function renderList(list) {
     const kind = list.dataset.collectionList;
-    const items = data[kind] || [];
+    const { items = [] } = await loadCollection(kind);
     if (!items.length) {
       list.outerHTML =
         `<div class="empty glass">${icon(kind)}<h2>${LABELS[kind].empty}</h2>` +
@@ -120,10 +132,13 @@
 
   // Detail page
   const detail = document.querySelector('[data-collection-detail]');
-  if (detail) {
+  if (detail) renderDetail(detail);
+
+  async function renderDetail(detail) {
     const kind = detail.dataset.collectionDetail;
     const id = new URLSearchParams(location.search).get('id');
-    const item = (data[kind] || []).find((it) => it.id === id);
+    const { specFields = [], items = [] } = await loadCollection(kind);
+    const item = items.find((it) => it.id === id);
     const back = `<a class="back" href="${kind}.html">‹ ${LABELS[kind].title}</a>`;
 
     if (!item) {
@@ -133,11 +148,10 @@
     } else {
       document.title = `${item.name} · applehugger`;
       // Specs: either { label: value } in the standard order, or a list of [label, value] pairs
-      const fields = (window.SPEC_FIELDS || {})[kind];
       const raw = item.specs || {};
       const specs = Array.isArray(raw)
         ? raw
-        : (fields || Object.keys(raw)).filter((k) => raw[k]).map((k) => [k, raw[k]]);
+        : (specFields.length ? specFields : Object.keys(raw)).filter((k) => raw[k]).map((k) => [k, raw[k]]);
       const photos = item.photos || [];
       const story = item.story ? [].concat(item.story) : [];
 
@@ -164,7 +178,7 @@
               .map(
                 (p, i) =>
                   `<button type="button" data-index="${i}" aria-label="Open photo ${i + 1} of ${photos.length}">` +
-                  `<img src="${esc(p.src)}" alt="${esc(p.alt || item.name)}" loading="lazy"></button>`
+                  `<img src="${esc(p.src)}" alt="${esc(p.alt || `${item.name}, photo ${i + 1}`)}" loading="lazy"></button>`
               )
               .join('')}</div>`
           : `<div class="empty glass">${icon(kind)}<h2>Photos coming soon</h2></div>`);

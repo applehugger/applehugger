@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' blob: data:; connect-src 'self' blob: https://api.github.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Editor · applehugger</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="admin.css">
+  <script src="config.js" defer></script>
+  <script src="admin.js" defer></script>
+</head>
+<body class="admin">
+  <div class="admin-wrap">
+    <header class="admin-top glass">
+      <a class="brand" href="../">‹ applehugger</a>
+      <h1>Editor</h1>
+      <div class="top-right">
+        <span id="who" class="who"></span>
+        <button id="signout" class="btn-ghost" type="button" hidden>Sign out</button>
+        <button id="publish" class="button" type="button" hidden>Publish changes</button>
+      </div>
+    </header>
+
+    <p id="banner" class="banner" hidden></p>
+    <p id="status" class="status-bar" role="status" aria-live="polite"></p>
+
+    <section id="signin" class="signin glass" hidden>
+      <h2>Sign in to edit</h2>
+      <p>The editor uses your GitHub account, so your GitHub passkey and two-factor sign-in protect it.</p>
+      <button id="signin-btn" class="button" type="button">Sign in with GitHub</button>
+      <p id="signin-note" class="field-note"></p>
+    </section>
+
+    <main id="app" hidden>
+      <div class="tabs" role="tablist" aria-label="Section">
+        <button type="button" role="tab" data-kind="drums">Drums</button>
+        <button type="button" role="tab" data-kind="cars">Cars</button>
+      </div>
+
+      <div class="admin-grid">
+        <aside class="item-panel glass" aria-label="Cards">
+          <div class="panel-head">
+            <h2>Cards</h2>
+            <button id="add" class="button small" type="button">+ Add</button>
+          </div>
+          <ol id="items" class="item-list"></ol>
+          <p class="field-note">Drag cards (or use the arrows) to set the order shown on the site.</p>
+        </aside>
+
+        <section id="editor" class="editor glass" aria-live="polite"></section>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="blur-dialog" class="dlg">
+    <h2>Blur part of this photo</h2>
+    <p class="field-note">Drag a box over anything to hide, like a license plate. You can draw more than one box.</p>
+    <div class="blur-stage"><canvas id="blur-canvas"></canvas></div>
+    <div class="dlg-actions">
+      <button id="blur-undo" class="btn-ghost" type="button">Undo last box</button>
+      <span class="spacer"></span>
+      <button id="blur-cancel" class="btn-ghost" type="button">Cancel</button>
+      <button id="blur-apply" class="button" type="button">Apply blur</button>
+    </div>
+  </dialog>
+
+  <dialog id="ask-dialog" class="dlg dlg-small">
+    <h2 id="ask-title"></h2>
+    <p id="ask-text" class="field-note"></p>
+    <label id="ask-field" class="field"><span id="ask-label"></span><input id="ask-input" type="text" autocomplete="off"></label>
+    <pre id="ask-list" class="ask-list" hidden></pre>
+    <div class="dlg-actions">
+      <span class="spacer"></span>
+      <button id="ask-cancel" class="btn-ghost" type="button">Cancel</button>
+      <button id="ask-ok" class="button" type="button">OK</button>
+    </div>
+  </dialog>
+</body>
+</html>
