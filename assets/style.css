@@ -467,7 +467,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-hei
 
 /* ---------- Contact form ---------- */
 
-.form-card { max-width: 640px; padding: 32px; border-radius: var(--radius-xl); }
+.form-card { max-width: 640px; margin: 0 auto; padding: 32px; border-radius: var(--radius-xl); }
 .form-card.center { margin: 40px auto 0; }
 
 form { display: grid; gap: 18px; }
@@ -556,6 +556,7 @@ input:focus, textarea:focus {
   .specs div:nth-child(odd) { border-right: 0; }
   .hero .logo { width: 190px; height: 190px; }
   .tiles { grid-template-columns: minmax(0, 300px); }
+  .section-head { align-items: flex-start; }
   .tile { min-height: 0; }
   .tile h2 { margin-top: 20px; }
   .row { grid-template-columns: 1fr; }
