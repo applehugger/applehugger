@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact · applehugger</title>
+  <meta name="description" content="applehugger: drums, cars, and a way to say hello.">
+  <meta name="theme-color" content="#061416">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/style.css?v=dda962fc">
+  <script src="assets/site.js?v=4a9a2305" defer></script>
+</head>
+<body data-section="contact">
+  <main class="page">
+    <div class="wrap">
+      <header class="section-head">
+        <span class="tile-icon" data-icon="contact"></span>
+        <div>
+          <h1>Contact</h1>
+          <p>Want to say hello? Send me a note and I'll get back to you.</p>
+        </div>
+      </header>
+
+      <div class="form-card glass">
+        <form id="contact" method="POST" action="https://api.web3forms.com/submit">
+          <!-- Web3Forms access key: public by design; it only lets visitors send messages through this form. -->
+          <input type="hidden" name="access_key" value="c27488fb-a0f1-4111-84f5-5eadc8c199af">
+          <input type="hidden" name="from_name" value="applehugger.com contact form">
+          <input type="hidden" name="redirect" value="https://applehugger.com/thanks.html">
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
+
+          <div class="row">
+            <label>
+              <span>Your name</span>
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <label>
+              <span>Your email</span>
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+          </div>
+
+          <label>
+            <span>Subject</span>
+            <input type="text" name="subject" required>
+          </label>
+
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+
+          <button class="button" type="submit">Send message</button>
+          <p id="form-status" class="status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <script>
+        // Send the form in the background, then show the thank-you page.
+        const form = document.getElementById("contact");
+        const status = document.getElementById("form-status");
+        const button = form.querySelector("button");
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          button.disabled = true;
+          button.textContent = "Sending…";
+          status.textContent = "";
+          status.classList.remove("error");
+
+          try {
+            const data = Object.fromEntries(new FormData(form));
+            delete data.redirect;
+            const response = await fetch(form.action, {
+              method: "POST",
+              headers: { "Content-Type": "application/json", Accept: "application/json" },
+              body: JSON.stringify(data),
+            });
+            const result = await response.json();
+            if (!response.ok || !result.success) throw new Error(result.message);
+            window.location.href = "thanks.html";
+          } catch (error) {
+            status.textContent = "Sorry, your message didn't go through. Please try again in a moment.";
+            status.classList.add("error");
+            button.disabled = false;
+            button.textContent = "Send message";
+          }
+        });
+      </script>
+      <footer class="footer">© <span data-year>2026</span> applehugger.com</footer>
+    </div>
+  </main>
+</body>
+</html>
