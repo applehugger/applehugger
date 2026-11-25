@@ -37,6 +37,30 @@
       "cover": "assets/photos/drums/rosewood/thumb/img-4755.jpg",
       "photos": [
         {
+          "src": "assets/photos/drums/rosewood/thumb/img-4755.jpg",
+          "full": "assets/photos/drums/rosewood/full/img-4755.jpg"
+        },
+        {
+          "src": "assets/photos/drums/rosewood/thumb/img-4754.jpg",
+          "full": "assets/photos/drums/rosewood/full/img-4754.jpg"
+        },
+        {
+          "src": "assets/photos/drums/rosewood/thumb/img-4752.jpg",
+          "full": "assets/photos/drums/rosewood/full/img-4752.jpg"
+        },
+        {
+          "src": "assets/photos/drums/rosewood/thumb/img-4753.jpg",
+          "full": "assets/photos/drums/rosewood/full/img-4753.jpg"
+        },
+        {
+          "src": "assets/photos/drums/rosewood/thumb/img-4751.jpg",
+          "full": "assets/photos/drums/rosewood/full/img-4751.jpg"
+        },
+        {
+          "src": "assets/photos/drums/rosewood/thumb/img-4897-v27rm.jpg",
+          "full": "assets/photos/drums/rosewood/full/img-4897-v27rm.jpg"
+        },
+        {
           "src": "assets/photos/drums/rosewood/thumb/0.jpg",
           "full": "assets/photos/drums/rosewood/full/0.jpg"
         },
@@ -91,30 +115,6 @@
         {
           "src": "assets/photos/drums/rosewood/thumb/img-3978.jpg",
           "full": "assets/photos/drums/rosewood/full/img-3978.jpg"
-        },
-        {
-          "src": "assets/photos/drums/rosewood/thumb/img-4751.jpg",
-          "full": "assets/photos/drums/rosewood/full/img-4751.jpg"
-        },
-        {
-          "src": "assets/photos/drums/rosewood/thumb/img-4752.jpg",
-          "full": "assets/photos/drums/rosewood/full/img-4752.jpg"
-        },
-        {
-          "src": "assets/photos/drums/rosewood/thumb/img-4753.jpg",
-          "full": "assets/photos/drums/rosewood/full/img-4753.jpg"
-        },
-        {
-          "src": "assets/photos/drums/rosewood/thumb/img-4754.jpg",
-          "full": "assets/photos/drums/rosewood/full/img-4754.jpg"
-        },
-        {
-          "src": "assets/photos/drums/rosewood/thumb/img-4755.jpg",
-          "full": "assets/photos/drums/rosewood/full/img-4755.jpg"
-        },
-        {
-          "src": "assets/photos/drums/rosewood/thumb/shell.jpg",
-          "full": "assets/photos/drums/rosewood/full/shell.jpg"
         }
       ]
     },
