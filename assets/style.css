@@ -184,7 +184,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-hei
 
 .tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 300px));
+  grid-template-columns: repeat(3, minmax(0, 300px));
   justify-content: center;
   gap: 24px;
 }
@@ -220,6 +220,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-hei
 /* Homepage tiles: always square, icon and name centered, no inner box */
 .tile {
   aspect-ratio: 1;
+  padding: clamp(14px, 2.2vw, 28px);
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -233,9 +234,9 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-hei
   border-radius: 0;
 }
 
-.tile .tile-icon .icon { width: clamp(88px, 10vw, 120px); height: clamp(88px, 10vw, 120px); }
+.tile .tile-icon .icon { width: clamp(72px, 9vw, 120px); height: clamp(72px, 9vw, 120px); }
 
-.tile h2 { margin: 18px 0 0; font-size: 1.6rem; font-weight: 600; }
+.tile h2 { margin: clamp(10px, 1.4vw, 18px) 0 0; font-size: clamp(1.25rem, 1.8vw, 1.6rem); font-weight: 600; }
 .tile p { margin: 0; color: var(--muted); }
 
 .tile-arrow {
@@ -554,6 +555,7 @@ input:focus, textarea:focus {
   .specs div:nth-child(2) { border-top: 1px solid var(--separator); }
   .specs div:nth-child(odd) { border-right: 0; }
   .hero .logo { width: 190px; height: 190px; }
+  .tiles { grid-template-columns: minmax(0, 300px); }
   .tile { min-height: 0; }
   .tile h2 { margin-top: 20px; }
   .row { grid-template-columns: 1fr; }
